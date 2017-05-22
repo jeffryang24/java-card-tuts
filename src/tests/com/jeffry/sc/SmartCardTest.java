@@ -9,21 +9,10 @@ import com.licel.jcardsim.base.Simulator;
 
 public class SmartCardTest {
 	
-	private Simulator CardSimulator;
-	
-	@BeforeClass
-	public void TestInit(){
-		CardSimulator = new Simulator();
-		assertNotNull("CardSimulator is null!", CardSimulator);
-	}
+	private Simulator CardSimulator = new Simulator();
 	
 	@Test
 	public void TestCard(){
-		
-	}
-	
-	@AfterClass
-	public void TearDownTest(){
-		if (CardSimulator != null) CardSimulator = null;
+		assertNotNull("CardSimulator is null!", CardSimulator);
 	}
 }

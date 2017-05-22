@@ -13,6 +13,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeffry%20Angtoni/Source/GitHub/java-card-tuts/libs/junit-4.12-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Jeffry Angtoni/Source/GitHub/java-card-tuts/libs/jcardsim-2.2.1-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jeffry Angtoni/Source/GitHub/java-card-tuts/libs/jcardsim-2.2.2-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
