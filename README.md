@@ -1,2 +1,3 @@
 # java-card-tuts
-Java Card Tutorial Collection
+This is my exercise collections when practicing Java Card Programming:
+- Hello World (May 22nd, 2017)
