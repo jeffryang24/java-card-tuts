@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Oracle/Java Card Development Kit 2.2.2/lib/api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/JavaCardSDK/2.2.2/jc_specification/specs/api/html/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
