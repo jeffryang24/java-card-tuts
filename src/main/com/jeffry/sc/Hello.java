@@ -10,15 +10,11 @@ public class Hello extends Applet {
 	
 	// declaring "Hello"
 	private final static byte[] hello = {
-		0x48, 0x65, 0x6c, 0x6c, 0x6f	
+		0x48, 0x65, 0x6c, 0x6c, 0x6f
 	};
 	
-	protected Hello(){
-		register();
-	}
-	
 	public static void install( byte[] bArray, short bOffset, byte bLength  ) throws ISOException {
-		new Hello();
+		(new Hello()).register();
 	}
 
 	@Override

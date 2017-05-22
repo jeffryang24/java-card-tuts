@@ -22,10 +22,14 @@
 	<property name="dist.dir" value="dist"/>
 	<property name="libs.dir" value="libs"/>
 	
+	<!-- Remote Debug Setting -->
+	<property name="remoteDebug" value="false"/>
+
+	
 	<path id="junit-path">
 		<pathelement location="${libs.dir}/junit-4.12.jar"/>
 		<pathelement location="${libs.dir}/hamcrest-core-1.3.jar"/>
-		<pathelement location="${libs.dir}/jcardsim-2.2.2-all.jar"/>
+		<pathelement location="${libs.dir}/jcardsim-2.2.1-all.jar"/>
 		<pathelement location="${build.dir}"/>
 	</path>
 	
@@ -74,26 +78,42 @@
 	
 	<!-- Test Compile -->
 	<target name="test-compile" description="Compile test class">
+		<!-- do cleaning -->
+		<delete dir="${build.tests.dir}"></delete>
+		
 		<mkdir dir="${build.tests.dir}"/>
+		
+		<!-- for debug -->
+		<condition property="DebugMode"
+			value="true" else="false">
+			<istrue value="${remoteDebug}"/>
+		</condition>
 		
 		<javac srcdir="${src.tests.dir}"
 				destdir="${build.tests.dir}"
 				includeantruntime="false"
 				source="1.8"
 				target="1.8"
+				debug="${DebugMode}"
 				classpathref="junit-path"></javac>
 	</target>
 	
 	<!-- Test Target -->
 	<target name="test" depends="test-compile" description="Test code">
+		<condition property="remoteDebugJVMArgs"
+			value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8787"
+			else="-ea">
+			<istrue value="${remoteDebug}"/>
+		</condition>
 		<junit printsummary="on" haltonfailure="yes" fork="true">
+			<jvmarg value="${remoteDebugJVMArgs}"/>
 			<classpath>
 				<path refid="junit-path"></path>
 				<pathelement location="${build.tests.dir}"/>
 			</classpath>
 			<formatter type="brief" usefile="false"/>
 			<batchtest>
-				<fileset dir="src" includes="tests/**/*Test.java"></fileset>
+				<fileset dir="${build.tests.dir}" includes="**/*.class"></fileset>
 			</batchtest>
 		</junit>
 	</target>
