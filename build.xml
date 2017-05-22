@@ -13,10 +13,25 @@
     </description>
 	
 	<!-- Variable declaration -->
-	<property name="src.dir" value="src"/>
+	<property name="src.dir" value="src/main"/>
+	<property name="src.tests.dir" value="src/tests"/>
+
 	<property name="build.dir" value="bin"/>
+	<property name="build.tests.dir" value="${build.dir}/tests"/>
+
 	<property name="dist.dir" value="dist"/>
 	<property name="libs.dir" value="libs"/>
+	
+	<path id="junit-path">
+		<pathelement location="${libs.dir}/junit-4.12.jar"/>
+		<pathelement location="${libs.dir}/hamcrest-core-1.3.jar"/>
+		<pathelement location="${libs.dir}/jcardsim-2.2.1-all.jar"/>
+		<pathelement location="${build.dir}"/>
+	</path>
+	
+	<path id="jcardsdk222">
+		<pathelement location="C:/JavaCardSDK/2.2.2/lib/api.jar"/>
+	</path>
 
 	
 	<!-- Init -->
@@ -29,7 +44,7 @@
 		<javac includeantruntime="false"
 				srcdir="${src.dir}"
 				destdir="${build.dir}"
-				classpath="C:/JavaCardSDK/2.2.2/lib/api.jar"
+				classpathref="jcardsdk222"
 				source="1.8"
 				target="1.8"></javac>
 	</target>
@@ -43,7 +58,7 @@
 		
 		<javacard>
 	  		<cap jckit="C:/JavaCardSDK/2.2.2" aid="DADEDF0000" output="${dist.dir}/${ant.project.name}.cap" sources="${src.dir}">
-		    	<applet class="com.jeffry.sc.Hello" aid="DADEDF000011"/>
+		    	<applet class="main.com.jeffry.sc.Hello" aid="DADEDF000011"/>
 	  		</cap>
 		</javacard>
 	</target>
@@ -54,6 +69,33 @@
 		<delete dir="${dist.dir}"></delete>
 	</target>
 	
+	<!-- Main Target -->
 	<target name="main" depends="clean, compile, cap"></target>
+	
+	<!-- Test Compile -->
+	<target name="test-compile" description="Compile test class">
+		<mkdir dir="${build.tests.dir}"/>
+		
+		<javac srcdir="${src.tests.dir}"
+				destdir="${build.tests.dir}"
+				includeantruntime="false"
+				source="1.8"
+				target="1.8"
+				classpathref="junit-path"></javac>
+	</target>
+	
+	<!-- Test Target -->
+	<target name="test" depends="test-compile" description="Test code">
+		<junit printsummary="on" haltonfailure="yes" fork="true">
+			<classpath>
+				<path refid="junit-path"></path>
+				<pathelement location="${build.tests.dir}"/>
+			</classpath>
+			<formatter type="brief" usefile="false"/>
+			<batchtest>
+				<fileset dir="${build.tests.dir}" includes="**/*Test.java"></fileset>
+			</batchtest>
+		</junit>
+	</target>
 </project>
 

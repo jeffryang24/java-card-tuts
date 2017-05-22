@@ -1,4 +1,4 @@
-package com.jeffry.sc;
+package main.com.jeffry.sc;
 
 import javacard.framework.APDU;
 import javacard.framework.Applet;
