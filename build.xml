@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     May 22, 2017 11:19:17 AM                                                        
+
+     Hello World    
+     A simple hello word java card applet
+                   
+     Jeffry Angtoni                                                                
+     ====================================================================== -->
+<project name="HelloWorld" default="main" basedir=".">
+    <description>
+            Hello World Applet Application
+    </description>
+	
+	<!-- Variable declaration -->
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="bin"/>
+	<property name="dist.dir" value="dist"/>
+	<property name="libs.dir" value="libs"/>
+
+	
+	<!-- Init -->
+	<target name="init" description="Init Build Folder">
+		<mkdir dir="${build.dir}"/>
+	</target>
+	
+	<!-- Compile -->
+	<target name="compile" depends="init" description="Compiling source">
+		<javac includeantruntime="false"
+				srcdir="${src.dir}"
+				destdir="${build.dir}"
+				classpath="C:/JavaCardSDK/2.2.2/lib/api.jar"
+				source="1.8"
+				target="1.8"></javac>
+	</target>
+	
+	<!-- Create CAP File -->
+	<target name="cap" description="Creating CAP">
+		<mkdir dir="${dist.dir}"/>
+		
+		<get src="https://github.com/martinpaljak/ant-javacard/releases/download/v1.7/ant-javacard.jar" dest="${libs.dir}" skipexisting="true"/>
+		<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="${libs.dir}/ant-javacard.jar"/>
+		
+		<javacard>
+	  		<cap jckit="C:/JavaCardSDK/2.2.2" aid="DADEDF0000" output="${dist.dir}/${ant.project.name}.cap" sources="${src.dir}">
+		    	<applet class="com.jeffry.sc.Hello" aid="DADEDF000011"/>
+	  		</cap>
+		</javacard>
+	</target>
+	
+	<!-- Clean Folder -->
+	<target name="clean" description="Cleaning up">
+		<delete dir="${build.dir}"></delete>
+		<delete dir="${dist.dir}"></delete>
+	</target>
+	
+	<target name="main" depends="clean, compile, cap"></target>
+</project>
+
