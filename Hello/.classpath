@@ -7,15 +7,15 @@
 			<attribute name="javadoc_location" value="file:/C:/JavaCardSDK/2.2.2/jc_specification/specs/api/html/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Jeffry Angtoni/Source/GitHub/java-card-tuts/libs/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Jeffry Angtoni/Source/GitHub/java-card-tuts/libs/junit-4.12.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeffry%20Angtoni/Source/GitHub/java-card-tuts/libs/junit-4.12-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Jeffry Angtoni/Source/GitHub/java-card-tuts/Hello/libs/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="libs/jcardsim-2.2.1-all.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/Jeffry%20Angtoni/Source/GitHub/java-card-tuts/libs/javadoc/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/Jeffry%20Angtoni/Source/GitHub/java-card-tuts/Hello/libs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Jeffry Angtoni/Source/GitHub/java-card-tuts/Hello/libs/junit-4.12.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeffry%20Angtoni/Source/GitHub/java-card-tuts/Hello/libs/junit-4.12-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
