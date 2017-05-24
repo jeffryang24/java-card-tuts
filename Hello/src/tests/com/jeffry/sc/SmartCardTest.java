@@ -35,10 +35,7 @@ public class SmartCardTest {
 				(byte) 0xDA, (byte) 0xDE, (byte) 0xDF, 0x00, 0x00, 0x11
 		};
 		AppletID = new AID(AppletIDs, (short)0, (byte) AppletIDs.length);
-	}
-	
-	@Test
-	public void TestInstallApplet(){
+		
 		AID InstallAppletResp = Simulator.installApplet(AppletID, Hello.class);
 		assertNotNull("Failed to install applet!", InstallAppletResp);
 		
